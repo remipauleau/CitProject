@@ -1,0 +1,16 @@
+<?php
+$this->headLink()->appendStylesheet('/css/fmsport.css');
+$title = 'Archived quotations';
+$this->headTitle($title);
+?>
+<h1><?php echo $this->escapeHtml($title); ?></h1>
+<p><a href="<?php echo $this->url('quotation', array('action'=>'index'));?>">Active quotations</a></p>
+<?php
+    echo $this->partial('/partials/qindex', array(
+    		'debut' => $debut,
+    		'tri' => $tri,
+    		'desc' => $desc,
+    		'paginator' => $paginator,
+    		'update' => 'activate',
+    ));
+?>

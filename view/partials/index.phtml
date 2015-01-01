@@ -1,0 +1,51 @@
+<table>
+<br>
+<tr><td>
+    <a href="<?php echo $this->url($this->route); ?>?debut=A">A</a><br>
+    <a href="<?php echo $this->url($this->route); ?>?debut=B">B</a><br>
+    <a href="<?php echo $this->url($this->route); ?>?debut=C">C</a><br>
+    <a href="<?php echo $this->url($this->route); ?>?debut=D">D</a><br>
+    <a href="<?php echo $this->url($this->route); ?>?debut=E">E</a><br>
+    <a href="<?php echo $this->url($this->route); ?>?debut=F">F</a><br>
+    <a href="<?php echo $this->url($this->route); ?>?debut=G">G</a><br>
+    <a href="<?php echo $this->url($this->route); ?>?debut=H">H</a><br>
+    <a href="<?php echo $this->url($this->route); ?>?debut=I">I</a><br>
+    <a href="<?php echo $this->url($this->route); ?>?debut=J">J</a><br>
+    <a href="<?php echo $this->url($this->route); ?>?debut=K">K</a><br>
+    <a href="<?php echo $this->url($this->route); ?>?debut=L">L</a><br>
+    <a href="<?php echo $this->url($this->route); ?>?debut=M">M</a><br>
+    <a href="<?php echo $this->url($this->route); ?>?debut=N">N</a><br>
+    <a href="<?php echo $this->url($this->route); ?>?debut=O">O</a><br>
+    <a href="<?php echo $this->url($this->route); ?>?debut=P">P</a><br>
+    <a href="<?php echo $this->url($this->route); ?>?debut=Q">Q</a><br>
+    <a href="<?php echo $this->url($this->route); ?>?debut=R">R</a><br>
+    <a href="<?php echo $this->url($this->route); ?>?debut=S">S</a><br>
+    <a href="<?php echo $this->url($this->route); ?>?debut=T">T</a><br>
+    <a href="<?php echo $this->url($this->route); ?>?debut=U">U</a><br>
+    <a href="<?php echo $this->url($this->route); ?>?debut=V">V</a><br>
+    <a href="<?php echo $this->url($this->route); ?>?debut=W">W</a><br>
+    <a href="<?php echo $this->url($this->route); ?>?debut=X">X</a><br>
+    <a href="<?php echo $this->url($this->route); ?>?debut=Y">Y</a><br>
+    <a href="<?php echo $this->url($this->route); ?>?debut=Z">Z</a><br>
+    </td>
+<td>&nbsp;&nbsp;</td>
+<td valign="top"><table class="table">
+<tr class="<?php echo $this->cycle(array("even", "odd"))->next();?>">
+	<td>&nbsp;</td>
+	<td>&nbsp;</td>
+    <td><a href="<?php echo $this->url($this->route); ?>?tri=name<?php if ($tri == 'name' && !$desc) echo '&desc=oui';?>">Project name</td>
+    <td><a href="<?php echo $this->url($this->route); ?>?tri=begin_date<?php if ($tri == 'begin_date' && !$desc) echo '&desc=oui';?>">Project begin</td>
+    <td><a href="<?php echo $this->url($this->route); ?>?tri=expected_prod_date<?php if ($tri == 'expected_prod_date' && !$desc) echo '&desc=oui';?>">Production (expected)</td>
+</tr>
+<?php foreach ($paginator as $project) : ?>
+	<tr class="<?php echo $this->cycle(array("even", "odd"))->next();?>">
+		<td><a href="<?php echo $this->url('project', array('action'=>$update, 'id' => $project->project_id));?>"><img height="20" src="/images/modifier.png" alt="Update" /></a></td>
+	    <td><a href="<?php echo $this->url('project', array('action'=>'delete', 'id' => $project->project_id));?>"><img height="20" src="/images/supprimer.png" alt="Delete" /></a></td>
+	    <td><?php echo $this->escapeHtml($project->name);?></td>
+	    <td><?php echo $this->escapeHtml($project->begin_date);?></td>
+	    <td><?php echo $this->escapeHtml($project->expected_prod_date);?></td>
+	</tr>
+<?php endforeach; ?>
+</table></td></tr>
+</table>
+<?php echo $this->paginationControl($this->paginator, 'Sliding', 'partials/pagination.phtml', (array('route' => 'project', 'debut' => $debut, 'tri' => $tri, 'desc' => $desc))); ?>

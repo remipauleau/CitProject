@@ -1,0 +1,16 @@
+<br>
+<table class="table">
+<tr class="<?php echo $this->cycle(array("even", "odd"))->next();?>">
+	<td>&nbsp;</td>
+	<td>&nbsp;</td>
+    <td><a href="<?php echo $this->url($this->route); ?>?tri=date<?php if ($tri == 'date' && !$desc) echo '&desc=oui';?>">Date</td>
+</tr>
+<?php foreach ($paginator as $quotation) : ?>
+	<tr class="<?php echo $this->cycle(array("even", "odd"))->next();?>">
+		<td><a href="<?php echo $this->url('quotation', array('action'=>$update, 'id' => $quotation->quotation_id));?>"><img height="20" src="/images/modifier.png" alt="Update" /></a></td>
+	    <td><a href="<?php echo $this->url('quotation', array('action'=>'delete', 'id' => $quotation->quotation_id));?>"><img height="20" src="/images/supprimer.png" alt="Delete" /></a></td>
+	    <td><?php echo $this->escapeHtml($quotation->date);?></td>
+	</tr>
+<?php endforeach; ?>
+</table>
+<?php echo $this->paginationControl($this->paginator, 'Sliding', 'partials/pagination.phtml', (array('route' => 'quotation', 'debut' => $debut, 'tri' => $tri, 'desc' => $desc))); ?>
